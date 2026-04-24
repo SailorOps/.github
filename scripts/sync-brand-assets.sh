@@ -15,10 +15,10 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-log()   { echo -e "${CYAN}⚓${NC} $*"; }
-ok()    { echo -e "${GREEN}✓${NC} $*"; }
-warn()  { echo -e "${YELLOW}⚠${NC} $*"; }
-err()   { echo -e "${RED}✗${NC} $*"; }
+log()   { echo -e "${CYAN}⚓${NC} $*" >&2; }
+ok()    { echo -e "${GREEN}✓${NC} $*" >&2; }
+warn()  { echo -e "${YELLOW}⚠${NC} $*" >&2; }
+err()   { echo -e "${RED}✗${NC} $*" >&2; }
 
 # ── Environment validation ──
 # ── Configuration parsing ──
@@ -110,8 +110,7 @@ list_org_repos() {
     response=$(gh api \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      "/orgs/${org}/repos?per_page=${per_page}&page=${page}&type=all" \
-      2>/dev/null) || { err "Failed to list repos (page $page)"; return 1; }
+      "/orgs/${org}/repos?per_page=${per_page}&page=${page}&type=all") || { err "Failed to list repos (page $page)"; return 1; }
 
     local count
     count=$(echo "$response" | jq 'length')
