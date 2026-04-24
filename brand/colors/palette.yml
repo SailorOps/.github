@@ -1,0 +1,26 @@
+# ⚓ SailorOps Brand Color Palette
+brand:
+  primary:
+    name: "Navy Anchor"
+    hex: "#1B2A4A"
+    usage: "Primary backgrounds, headers, footers"
+  secondary:
+    name: "Signal Blue"
+    hex: "#2563EB"
+    usage: "Links, CTAs, interactive elements"
+  accent:
+    name: "Compass Gold"
+    hex: "#D4A843"
+    usage: "Highlights, badges, accent borders"
+  background:
+    name: "Fog White"
+    hex: "#F7F5F0"
+    usage: "Page backgrounds, card surfaces"
+  text:
+    name: "Charcoal"
+    hex: "#1A1A1A"
+    usage: "Body text, headings"
+  muted:
+    name: "Slate Gray"
+    hex: "#6B7280"
+    usage: "Secondary text, captions, metadata"

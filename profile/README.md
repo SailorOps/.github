@@ -33,6 +33,10 @@ Inspired by real‑world engineering and military‑grade reliability — clean,
 
 NEXUS‑V replaces the legacy Yeoman `yo code` generator with a single static binary that produces clean, modern VS Code extension projects. It is the first flagship tool under the SailorOps umbrella.
 
+![Homebrew](https://img.shields.io/badge/Homebrew-181818?style=for-the-badge&logo=homebrew&logoColor=FBB040)
+![Scoop](https://img.shields.io/badge/Scoop-Windows-4CC3FF?style=for-the-badge)
+![Winget](https://img.shields.io/badge/Winget-Package-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+
 ---
 
 ## 🧭 Philosophy
@@ -48,6 +52,10 @@ If a tool adds friction, hides state, or requires a dependency tree to understan
 ---
 
 ## 📦 Projects & Ecosystem
+
+![Status](https://img.shields.io/badge/Status-Active-4CC3FF?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
 
 | Project | Description | Status |
 |:---|:---|:---|
