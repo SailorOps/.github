@@ -34,7 +34,12 @@ get_config_val() {
   fi
 }
 
-: "${GH_TOKEN:?GH_TOKEN secret is required}"
+if [ -z "${GH_TOKEN:-}" ]; then
+  err "GH_TOKEN is not set."
+  log "For cross-repository synchronization, a Personal Access Token (PAT) with 'repo' and 'read:org' scopes is required."
+  log "Please add GORELEASER_TOKEN to your GitHub secrets."
+  exit 1
+fi
 : "${TARGET_PATH:=$(get_config_val "target_path" || echo ".github/brand")}"
 : "${SYNC_MODE:=$(get_config_val "mode" || echo "pr")}"
 : "${PR_BRANCH:=$(get_config_val "pr_branch" || echo "sailorops/sync-brand-assets")}"
