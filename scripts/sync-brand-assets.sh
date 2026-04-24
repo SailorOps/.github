@@ -207,7 +207,7 @@ Changes: ${change_count} file(s) updated"
   if [ "$SYNC_MODE" = "pr" ]; then
     # ── PR mode: push to a branch and open/update PR ──
     git checkout -B "$PR_BRANCH"
-    git push --force origin "$PR_BRANCH" 2>/dev/null
+    git push --force origin "$PR_BRANCH"
 
     # Check for existing PR
     local existing_pr
@@ -216,13 +216,13 @@ Changes: ${change_count} file(s) updated"
       --head "$PR_BRANCH" \
       --state open \
       --json number \
-      --jq '.[0].number // empty' 2>/dev/null || echo "")
+      --jq '.[0].number // empty' || echo "")
 
     if [ -n "$existing_pr" ]; then
       gh pr comment "$existing_pr" \
         --repo "$full_name" \
         --body "🔄 Brand assets updated — ${change_count} file(s) changed.
-Source commit: ${GITHUB_REPOSITORY}@\`${GITHUB_SHA:0:7}\`" 2>/dev/null
+Source commit: ${GITHUB_REPOSITORY}@\`${GITHUB_SHA:0:7}\`"
       ok "${full_name} — updated PR #${existing_pr}"
       echo "| ${full_name} | 🔄 Updated PR #${existing_pr} | ${change_count} |" >> "$SUMMARY_FILE"
     else
@@ -246,7 +246,7 @@ Review the changes below and merge when ready.
 
 ---
 *Automated by [SailorOps Brand Sync](https://github.com/${GITHUB_REPOSITORY})*" \
-        --label "brand-sync" 2>/dev/null || echo "")
+        --label "brand-sync" || echo "")
 
       if [ -n "$pr_url" ]; then
         ok "${full_name} — opened new PR"
@@ -266,7 +266,7 @@ This PR updates brand assets from the central \`.github\` repository.
 **Changes:** ${change_count} file(s) updated
 
 ---
-*Automated by SailorOps Brand Sync*" 2>/dev/null || echo "FAILED")
+*Automated by SailorOps Brand Sync*" || echo "FAILED")
 
         if [ "$pr_url" != "FAILED" ]; then
           ok "${full_name} — opened new PR (no label)"
