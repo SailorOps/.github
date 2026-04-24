@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     # Only run for trusted actors or specific labels
     if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'workflow_run' ||
       github.event.pull_request.user.login == 'billy' ||
       github.event.pull_request.user.login == 'sailorops-bot' ||
       github.event.pull_request.user.login == 'app/github-actions' ||
