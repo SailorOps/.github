@@ -1,0 +1,36 @@
+name: ⚓ Auto-Merge Trusted PRs
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronized, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-handle:
+    runs-on: ubuntu-latest
+    # Only run for trusted actors or specific labels
+    if: >
+      github.event.pull_request.user.login == 'billy' ||
+      github.event.pull_request.user.login == 'sailorops-bot' ||
+      github.event.pull_request.user.login == 'app/github-actions' ||
+      contains(github.event.pull_request.labels.*.name, 'brand-sync') ||
+      contains(github.event.pull_request.labels.*.name, 'auto-merge')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Auto-approve and Enable Auto-merge
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
+        run: |
+          # 1. Approve the PR (using PAT since GITHUB_TOKEN can't approve self-PRs or trigger other workflows)
+          # Note: If the PR was created by the PAT owner, approval will fail, but auto-merge might still work
+          # if the repository settings allow it.
+          gh pr review "$PR_URL" --approve || echo "Could not approve (already approved or self-review)"
+
+          # 2. Enable auto-merge
+          gh pr merge "$PR_URL" --auto --merge || echo "Could not enable auto-merge (already enabled or not allowed in settings)"

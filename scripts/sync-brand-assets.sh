@@ -259,6 +259,7 @@ Review the changes below and merge when ready.
 
       if [ -n "$pr_url" ]; then
         ok "${full_name} — opened new PR"
+        gh pr merge "$pr_url" --auto --merge --repo "$full_name" || warn "Could not enable auto-merge for $pr_url"
         echo "| ${full_name} | 🆕 Opened PR | ${change_count} |" >> "$SUMMARY_FILE"
       else
         # Retry without label (it may not exist yet)
@@ -279,6 +280,7 @@ This PR updates brand assets from the central \`.github\` repository.
 
         if [ "$pr_url" != "FAILED" ]; then
           ok "${full_name} — opened new PR (no label)"
+          gh pr merge "$pr_url" --auto --merge --repo "$full_name" || warn "Could not enable auto-merge for $pr_url"
           echo "| ${full_name} | 🆕 Opened PR | ${change_count} |" >> "$SUMMARY_FILE"
         else
           err "${full_name} — failed to create PR"
