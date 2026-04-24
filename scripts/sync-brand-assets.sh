@@ -105,12 +105,22 @@ list_org_repos() {
   local page=1
   local per_page=100
 
+  log "Listing repos for org: $org"
   while true; do
     local response
+    set +e
     response=$(gh api \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      "/orgs/${org}/repos?per_page=${per_page}&page=${page}&type=all") || { err "Failed to list repos (page $page)"; return 1; }
+      "/orgs/${org}/repos?per_page=${per_page}&page=${page}&type=all")
+    local exit_code=$?
+    set -e
+    
+    if [ $exit_code -ne 0 ]; then
+      err "gh api failed with exit code $exit_code"
+      err "Response: $response"
+      return 1
+    fi
 
     local count
     count=$(echo "$response" | jq 'length')
