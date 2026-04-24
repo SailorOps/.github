@@ -354,8 +354,12 @@ main() {
   else
     # Full org sync
     log "Discovering repositories in ${org}..."
-
+    local repo_list
+    repo_list=$(mktemp)
+    list_org_repos "$org" > "$repo_list"
+    
     while IFS=$'\t' read -r name archived fork default_branch clone_url; do
+      [ -z "$name" ] && continue
       # Skip exclusions
       if is_excluded "$name"; then
         warn "Skipping ${name} (excluded)"
@@ -381,7 +385,8 @@ main() {
       fi
 
       sync_repo "$name" "$default_branch" "$clone_url" "$org" || true
-    done < <(list_org_repos "$org")
+    done < "$repo_list"
+    rm -f "$repo_list"
   fi
 
   # ── Summary Report ──
