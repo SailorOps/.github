@@ -1,0 +1,30 @@
+# ──────────────────────────────────────────────────────────────
+# ⚓ Still Systems Brand Sync Configuration
+# ──────────────────────────────────────────────────────────────
+# This file controls how brand assets are distributed from the
+# central .github repository to other projects.
+# ──────────────────────────────────────────────────────────────
+
+sync:
+  # The path in the destination repositories where assets will be placed
+  target_path: ".github/brand"
+  
+  # Delivery method: 'pr' (Pull Request) or 'direct' (Push to main)
+  # 'pr' is recommended for safety and visibility
+  mode: "pr"
+  
+  # Branch name to use for Pull Requests
+  pr_branch: "stillsystems/sync-brand-assets"
+
+repositories:
+  # Repositories to exclude from the sync process
+  exclude:
+    - ".github"
+    - "stillsystems.github.io"
+  
+  # Skip repositories that are archived or forks
+  skip_archived: true
+  skip_forks: true
+
+---
+⚓ **Still Systems** — Tools engineered for real-world conditions.
