@@ -4,8 +4,6 @@
   <img alt="Still Systems Logo" src="https://raw.githubusercontent.com/stillsystems/.github/main/brand/social-preview-light.png">
 </picture>
 
-**Clean, documented, and stable open-source tools built for developers of all skill levels.**
-
 ---
 
 ## Mission
