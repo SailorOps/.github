@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/stillsystems/.github/main/brand/social-preview-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/stillsystems/.github/main/brand/social-preview-light.png">
-  <img alt="Still Systems Logo" src="https://raw.githubusercontent.com/stillsystems/.github/main/brand/social-preview-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="../brand/social-preview-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="../brand/social-preview-light.png">
+  <img alt="Still Systems Logo" src="../brand/social-preview-light.png">
 </picture>
 
 ---
@@ -26,8 +26,8 @@ We maintain official, first-party support for the following package managers:
 
 ## Getting Started
 * **Explore:** Check our pinned repositories below for flagship tools and templates.
-* **Contribute:** We welcome contributors of all experience levels. Please read our [Contributing Guidelines](https://github.com/stillsystems/.github/blob/main/CONTRIBUTING.md) to understand our workflow.
-* **Support:** If you encounter a bug or need help, open an issue in the relevant repository or check our [Support Page](https://github.com/stillsystems/.github/blob/main/SUPPORT.md).
+* **Contribute:** We welcome contributors of all experience levels. Please read our [Contributing Guidelines](../CONTRIBUTING.md) to understand our workflow.
+* **Support:** If you encounter a bug or need help, open an issue in the relevant repository or check our [Support Page](../SUPPORT.md).
 
 ## How We Work
 * **Consistency:** Every tool follows the same documentation structure and coding standards.
@@ -36,6 +36,6 @@ We maintain official, first-party support for the following package managers:
 
 ---
 
-[Documentation](https://stillsystems.github.io) • [Security](https://github.com/stillsystems/.github/blob/main/SECURITY.md) • [Conduct](https://github.com/stillsystems/.github/blob/main/CODE_OF_CONDUCT.md)
+[Documentation](https://stillsystems.github.io) • [Security](../SECURITY.md) • [Conduct](../CODE_OF_CONDUCT.md)
 
 *Athens, Texas*
