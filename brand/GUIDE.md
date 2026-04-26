@@ -1,5 +1,15 @@
 * **Label Taxonomy Table:** (The hex colors you'll use in GitHub settings).
-### 2. Unified Label Taxonomy To keep your issue trackers looking clean, use these specific hex colors across all your repositories. This makes the "Still Systems" workshop feel visually anchored. | Label | Color | Description | | :--- | :--- | :--- | | **type:bug** | `#D73A4A` (Red) | Something isn't working. | | **type:feature** | `#A2EEEF` (Blue) | New functionality request. | | **good first issue** | `#7057FF` (Purple) | Great for new contributors. | | **priority:high** | `#B60205` (Dark Red) | Needs immediate attention. | | **status:blocked** | `#000000` (Black) | Waiting on external factors. | | **documentation** | `#0075CA` (Dark Blue) | Improvements to READMEs or docs. | 
+### 2. Unified Label Taxonomy 
+To keep your issue trackers looking clean, use these specific hex colors across all your repositories. This makes the "Still Systems" workshop feel visually anchored.
+
+| Label | Color | Description |
+| :--- | :--- | :--- |
+| **type:bug** | `#D73A4A` (Red) | Something isn't working. |
+| **type:feature** | `#A2EEEF` (Blue) | New functionality request. |
+| **good first issue** | `#7057FF` (Purple) | Great for new contributors. |
+| **priority:high** | `#B60205` (Dark Red) | Needs immediate attention. |
+| **status:blocked** | `#000000` (Black) | Waiting on external factors. |
+| **documentation** | `#0075CA` (Dark Blue) | Improvements to READMEs or docs. | 
 
 *************************************************************
 
@@ -81,7 +91,10 @@ By standardizing these Actions, you ensure that every tool in the Still Systems 
 Should we draft the **Release Automation** workflow next to handle syncing your `nexus-v` updates to the **WinGet** and **Scoop** repositories?
 *************************************************************
 * **Milestone Naming:** (How you name your releases).
-### 3. Predictable Milestones When planning updates for `nexus-v` or the package buckets, use a standard naming convention so your **Roadmap** is easy to follow: * **Versions:** `v1.0.0-stable`, `v1.1.0-beta` * **Time-based:** `2026-Q2-Roadmap`, `2026-Q3-Release`
+### 3. Predictable Milestones 
+When planning updates for `nexus-v` or the package buckets, use a standard naming convention so your **Roadmap** is easy to follow: 
+* **Versions:** `v1.0.0-stable`, `v1.1.0-beta` 
+* **Time-based:** `2026-Q2-Roadmap`, `2026-Q3-Release`
 *************************************************************
 * **Voice/Tone Rules:** (Phase 3 traits).
 1. The One-Line Pitch (The Elevator Pitch)

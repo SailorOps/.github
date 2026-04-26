@@ -14,7 +14,7 @@ A brief (1-2 paragraph) explanation of what this tool does and why it exists.
 # Example command
 scoop bucket add stillsystems
 scoop install REPO_NAME
-Usage
+## Usage
 Provide the 80% use case here. Keep it example-heavy as per your Tone Guidelines.
 
 Configuration
