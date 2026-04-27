@@ -15,7 +15,7 @@ Our goal is to provide software that "just works"—allowing you to focus on you
 We specialize in building lightweight, high-utility systems and ensuring they are accessible across all major development environments.
 
 ### Flagship: Nexus-V
-The core engine of the Still Systems ecosystem. 
+The core scaffolding engine of the Still Systems ecosystem. Built for real-world conditions with zero runtime dependencies.
 [View Repository](https://github.com/stillsystems/nexus-v)
 
 ### Distribution Channels
