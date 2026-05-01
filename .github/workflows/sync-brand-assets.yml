@@ -63,12 +63,12 @@ jobs:
           CONFIG="brand-sync.yml"
           if [ -f "$CONFIG" ]; then
             echo "✓ Found brand-sync.yml"
-            echo "target_path=$(yq '.sync.target_path // ".github/brand"' "$CONFIG")" >> "$GITHUB_OUTPUT"
-            echo "sync_mode=$(yq '.sync.mode // "pr"' "$CONFIG")" >> "$GITHUB_OUTPUT"
-            echo "pr_branch=$(yq '.sync.pr_branch // "stillsystems/sync-brand-assets"' "$CONFIG")" >> "$GITHUB_OUTPUT"
-            echo "skip_archived=$(yq '.repositories.skip_archived // true' "$CONFIG")" >> "$GITHUB_OUTPUT"
-            echo "skip_forks=$(yq '.repositories.skip_forks // true' "$CONFIG")" >> "$GITHUB_OUTPUT"
-            EXCLUDES=$(yq '.repositories.exclude // [".github"] | join(",")' "$CONFIG")
+            echo "target_path=$(yq -r '.sync.target_path // ".github/brand"' "$CONFIG")" >> "$GITHUB_OUTPUT"
+            echo "sync_mode=$(yq -r '.sync.mode // "pr"' "$CONFIG")" >> "$GITHUB_OUTPUT"
+            echo "pr_branch=$(yq -r '.sync.pr_branch // "stillsystems/sync-brand-assets"' "$CONFIG")" >> "$GITHUB_OUTPUT"
+            echo "skip_archived=$(yq -r '.repositories.skip_archived // true' "$CONFIG")" >> "$GITHUB_OUTPUT"
+            echo "skip_forks=$(yq -r '.repositories.skip_forks // true' "$CONFIG")" >> "$GITHUB_OUTPUT"
+            EXCLUDES=$(yq -r '.repositories.exclude // [".github"] | join(",")' "$CONFIG")
             echo "exclude_repos=$EXCLUDES" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::No brand-sync.yml found — using defaults"
