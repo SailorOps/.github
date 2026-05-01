@@ -1,6 +1,6 @@
-# ──────────────────────────────────────────────────────────────
-# ⚓ Still Systems Brand Asset Sync
-# ──────────────────────────────────────────────────────────────
+﻿# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# âš“ Still Systems Brand Asset Sync
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Distributes brand assets from the central .github repo to
 # every repository in the organization. Detects changes,
 # delivers via PR or direct push, and reports results.
@@ -8,9 +8,9 @@
 # Prerequisites:
 # 1. Org secret GORELEASER_TOKEN (PAT with repo + read:org scopes)
 # 2. Brand assets stored in /brand/ at repo root
-# ──────────────────────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-name: "⚓ Sync Brand Assets"
+name: "âš“ Sync Brand Assets"
 
 on:
   push:
@@ -62,7 +62,7 @@ jobs:
         run: |
           CONFIG="brand-sync.yml"
           if [ -f "$CONFIG" ]; then
-            echo "✓ Found brand-sync.yml"
+            echo "âœ“ Found brand-sync.yml"
             echo "target_path=$(yq -r '.sync.target_path // ".github/brand"' "$CONFIG")" >> "$GITHUB_OUTPUT"
             echo "sync_mode=$(yq -r '.sync.mode // "pr"' "$CONFIG")" >> "$GITHUB_OUTPUT"
             echo "pr_branch=$(yq -r '.sync.pr_branch // "stillsystems/sync-brand-assets"' "$CONFIG")" >> "$GITHUB_OUTPUT"
@@ -71,7 +71,7 @@ jobs:
             EXCLUDES=$(yq -r '.repositories.exclude // [".github"] | join(",")' "$CONFIG")
             echo "exclude_repos=$EXCLUDES" >> "$GITHUB_OUTPUT"
           else
-            echo "::warning::No brand-sync.yml found — using defaults"
+            echo "::warning::No brand-sync.yml found â€” using defaults"
             echo "target_path=.github/brand" >> "$GITHUB_OUTPUT"
             echo "sync_mode=pr" >> "$GITHUB_OUTPUT"
             echo "pr_branch=stillsystems/sync-brand-assets" >> "$GITHUB_OUTPUT"
