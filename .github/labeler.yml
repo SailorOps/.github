@@ -1,0 +1,20 @@
+# Organizational Labeler Configuration
+# This file is used by the actions/labeler action in individual repositories.
+
+"area: go":
+  - any: ['**/*.go', 'go.mod', 'go.sum']
+
+"area: typescript":
+  - any: ['**/*.ts', '**/*.tsx', 'package.json', 'tsconfig.json']
+
+"area: documentation":
+  - any: ['**/*.md', 'docs/**']
+
+"area: github-actions":
+  - any: ['.github/workflows/**']
+
+"area: styles":
+  - any: ['**/*.css', '**/*.scss']
+
+"area: tests":
+  - any: ['**/*_test.go', '**/*.test.ts', 'tests/**']
