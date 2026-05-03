@@ -6,7 +6,7 @@ on:
       node-version:
         required: false
         type: string
-        default: '20.x'
+        default: '24.x'
       working-directory:
         required: false
         type: string
@@ -53,6 +53,7 @@ jobs:
     steps:
       - name: Report Incident
         uses: actions/github-script@v7
+        continue-on-error: true
         with:
           script: |
             const issueTitle = `🚨 Incident: Node CI failed in ${context.repo.owner}/${context.repo.repo}`;
@@ -74,4 +75,3 @@ jobs:
               body: issueBody,
               labels: ['incident', 'ci-failure']
             });
-
