@@ -6,29 +6,51 @@ on:
       go-version:
         required: false
         type: string
-        default: '1.24.2'
+        default: '1.24.x'
       working-directory:
         required: false
         type: string
         default: '.'
 
 jobs:
-  test:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Go
-        uses: actions/setup-go@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: ${{ inputs.go-version }}
-          check-latest: true
-      - name: Verify dependencies
-        run: go mod verify
+          cache: true
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: ${{ inputs.working-directory }}
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go-version }}
+          cache: true
+      - name: Run Tests
         working-directory: ${{ inputs.working-directory }}
-      - name: Build
-        run: go build -v ./...
-        working-directory: ${{ inputs.working-directory }}
-      - name: Test
-        run: go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
-        working-directory: ${{ inputs.working-directory }}
+        run: go test -v -race ./...
+
+  vulnerability-scan:
+    name: Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go-version }}
+          cache: true
+      - name: Run govulncheck
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./...
