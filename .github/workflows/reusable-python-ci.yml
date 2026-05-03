@@ -1,0 +1,40 @@
+name: Reusable Python CI
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: false
+        type: string
+        default: '3.12'
+      working-directory:
+        required: false
+        type: string
+        default: '.'
+
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+          cache: 'pip'
+      - name: Install Dependencies
+        working-directory: ${{ inputs.working-directory }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest pip-audit
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f pyproject.toml ]; then pip install .; fi
+      - name: Lint with ruff
+        working-directory: ${{ inputs.working-directory }}
+        run: ruff check .
+      - name: Test with pytest
+        working-directory: ${{ inputs.working-directory }}
+        run: pytest
+      - name: Audit dependencies
+        working-directory: ${{ inputs.working-directory }}
+        run: pip-audit
