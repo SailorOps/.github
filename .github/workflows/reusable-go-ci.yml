@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/setup-go@v6
         with:
           go-version: ${{ inputs.go-version }}
@@ -28,36 +30,32 @@ jobs:
           version: latest
           working-directory: ${{ inputs.working-directory }}
 
-  test:
-    name: Test
+  test-and-scan:
+    name: Test and Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/setup-go@v6
         with:
           go-version: ${{ inputs.go-version }}
           cache: true
+      
       - name: Run Tests
         working-directory: ${{ inputs.working-directory }}
-        run: go test -v -race ./...
+        run: go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
 
-  vulnerability-scan:
-    name: Vulnerability Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
-        with:
-          go-version: ${{ inputs.go-version }}
-          cache: true
-      - name: Run govulncheck
+      - name: Vulnerability Scan
         run: |
-          go install golang.org/x/vuln/cmd/govulncheck@latest
+          if ! command -v govulncheck \u0026\u003e /dev/null; then
+            go install golang.org/x/vuln/cmd/govulncheck@latest
+          fi
           govulncheck ./...
 
   notify-failure:
     name: Notify Failure
-    needs: [lint, test, vulnerability-scan]
+    needs: [lint, test-and-scan]
     if: failure()
     runs-on: ubuntu-latest
     steps:
