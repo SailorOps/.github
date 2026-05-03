@@ -1,0 +1,26 @@
+name: Project Automation
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    name: Add to Roadmap
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Project Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # This script uses the GitHub GraphQL API to add items to the organization project.
+          # Note: The GITHUB_TOKEN needs 'repository-projects: write' or 'organization-projects: write'.
+          echo "Adding item to Still Systems Roadmap..."
+          
+          # In a real scenario, we'd use the 'actions/add-to-project' action which is much simpler.
+      - uses: actions/add-to-project@v1
+        with:
+          project-url: https://github.com/orgs/stillsystems/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
