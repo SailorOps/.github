@@ -1,14 +1,20 @@
-# Still Systems Organization Labeler
-# This configuration is inherited by all repositories in the organization.
+# Documentation: https://github.com/actions/labeler
 
-"area: documentation":
-  - any: ['**/*.md', 'docs/**']
+"area/infra":
+  - changed-files:
+      - any-glob-to-any-file: 
+          - '.github/**/*'
+          - 'workflows/**/*'
 
-"area: github-actions":
-  - any: ['.github/workflows/**']
+"area/docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**/*'
+          - '**/*.md'
+          - 'README.md'
 
-"area: configuration":
-  - any: ['.github/*.yml', '.github/*.md', '.gitignore', 'package.json', 'go.mod', 'pyproject.toml']
-
-"area: branding":
-  - any: ['.github/brand/**', 'assets/logo/**']
+"area/automation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'scripts/**/*'
+          - 'tools/**/*'
