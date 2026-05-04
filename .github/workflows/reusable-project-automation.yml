@@ -1,0 +1,21 @@
+name: Reusable Project Automation
+on:
+  workflow_call:
+    inputs:
+      project-url:
+        required: true
+        type: string
+      column-name:
+        required: false
+        type: string
+        default: "Todo"
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add to Project
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: ${{ inputs.project-url }}
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
