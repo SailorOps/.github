@@ -1,4 +1,43 @@
+# Still Systems Universal Labeler
 # Documentation: https://github.com/actions/labeler
+
+"area/go":
+  - changed-files:
+      - any-glob-to-any-file: 
+          - '**/*.go'
+          - 'go.mod'
+          - 'go.sum'
+
+"area/typescript":
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.ts'
+          - '**/*.tsx'
+          - 'package.json'
+          - 'package-lock.json'
+          - 'tsconfig.json'
+
+"area/vscode":
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.vscode/**/*'
+          - 'src/extension.ts'
+          - 'vsc-extension-quickstart.md'
+
+"area/web":
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'internal/web/**/*'
+          - '**/static/**/*'
+          - '**/*.html'
+          - '**/*.css'
+          - '**/*.js'
+
+"area/ai":
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/ai.go'
+          - 'pkg/nexusv/ai.go'
 
 "area/infra":
   - changed-files:
